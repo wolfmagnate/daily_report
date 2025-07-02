@@ -9,6 +9,8 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/netlify": "^6.4.0",
+    "@astrojs/node": "^9.2.2",
     "@astrojs/react": "^4.3.0",
     "@milkdown/core": "^7.14.0",
     "@milkdown/plugin-listener": "^7.14.0",
