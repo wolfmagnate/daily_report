@@ -8,6 +8,13 @@ const publicRoutes = [
 ];
 
 export const onRequest = defineMiddleware(async (context, next) => {
+  context.locals.user = {
+    id: "1",
+    login: 'john',
+    avatar_url: 'https://example.com/avatar.png',
+    name: 'John Doe',
+  };
+  return next();
   const currentPath = context.url.pathname;
 
   if (publicRoutes.includes(currentPath)) {
