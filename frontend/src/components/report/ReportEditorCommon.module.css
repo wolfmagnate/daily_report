@@ -1,0 +1,74 @@
+/* --- コンテナと基本レイアウト --- */
+.container {
+  padding: 2.5rem;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2.5rem;
+  flex-shrink: 0;
+}
+
+/* --- タイポグラフィ --- */
+.mainTitle {
+  font-size: 1.875rem; /* 30px */
+  font-weight: 700;
+  color: var(--color-gray-800);
+  line-height: 1.2;
+}
+
+.mainDescription {
+  font-size: 1rem;
+  color: var(--color-gray-600);
+  margin-top: 0.5rem;
+}
+
+/* --- セクションレイアウト --- */
+.section {
+  margin-bottom: 2.5rem;
+}
+
+.sectionTitle {
+  font-size: 1.25rem; /* 20px */
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.sectionDescription {
+  font-size: 0.875rem; /* 14px */
+  color: var(--color-gray-600);
+  margin-bottom: 1rem;
+}
+
+/* --- ボタンの共通スタイル --- */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  font-size: 0.9375rem; /* 15px */
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* --- エディタラッパー --- */
+.editorWrapper {
+  flex-grow: 1;
+  min-height: 100px; /* flexコンテナ内での縮小を許可 */
+}

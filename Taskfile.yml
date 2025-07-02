@@ -1,0 +1,21 @@
+version: '3'
+
+dotenv: ['.env']
+
+tasks:
+  install-devtools:
+    desc: "Install development tools"
+    cmds:
+      - go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
+
+  sqlc-backend:
+    dir: ./backend/infra
+    desc: "Run sqlc for backend"
+    cmds:
+      - sqlc generate
+
+  sqlc-collector:
+    dir: ./collector/infra
+    desc: "Run sqlc for collector"
+    cmds:
+      - sqlc generate

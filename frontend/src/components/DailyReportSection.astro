@@ -1,0 +1,99 @@
+---
+import Card from './ui/Card.astro';
+import IconCheckCircle from './icon/IconCheckCircle.astro';
+import IconEdit from './icon/IconEdit.astro';
+
+// 現在の日付を反映したダミーデータ
+const weeklyReports = [
+  { date: '6月23日 (月)', status: 'submitted', url: '/reports/2025-06-23' },
+  { date: '6月24日 (火)', status: 'today', url: '/reports/2025-06-24' },
+  { date: '6月25日 (水)', status: 'pending', url: '/reports/2025-06-25' },
+  { date: '6月26日 (木)', status: 'pending', url: '/reports/2025-06-26' },
+  { date: '6月27日 (金)', status: 'pending', url: '/reports/2025-06-27' },
+];
+---
+<Card>
+  <h2 class="section-title">今週の日報ステータス</h2>
+  <ul class="report-list">
+    {weeklyReports.map(report => (
+      <li class={`report-item report-item--${report.status}`}>
+        <div class="report-date">
+          <span class="date-text">{report.date}</span>
+          {report.status === 'today' && <span class="today-badge">今日</span>}
+        </div>
+        <div class="report-status">
+          {report.status === 'submitted' && (
+            <>
+              <IconCheckCircle class="status-icon-submitted" />
+              <span>提出済み</span>
+            </>
+          )}
+          {report.status === 'pending' && (
+            <span class="status-text-pending">未提出</span>
+          )}
+        </div>
+        <div class="report-action">
+          {report.status === 'today' && (
+            <a href={report.url} class="action-button primary">
+              <IconEdit />
+              <span>日報を書く</span>
+            </a>
+          )}
+          {report.status === 'pending' && (
+            <a href={report.url} class="action-button secondary">
+              入力する
+            </a>
+          )}
+           {report.status === 'submitted' && (
+            <a href={report.url} class="action-button view">
+              見る
+            </a>
+          )}
+        </div>
+      </li>
+    ))}
+  </ul>
+</Card>
+
+<style>
+  .section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-gray-800);
+    margin-bottom: 1.5rem;
+    margin-top: -1rem;
+  }
+
+  .report-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .report-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--border-radius-md);
+    transition: background-color 0.2s, border-color 0.2s;
+  }
+  
+  .report-date { flex-basis: 30%; font-weight: 500; color: var(--color-gray-800); display: flex; align-items: center; gap: 0.75rem; }
+  .today-badge { background-color: var(--color-blue-100); color: var(--color-blue-500); font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.5rem; border-radius: 9999px; }
+  .report-status { flex-basis: 30%; display: flex; align-items: center; gap: 0.5rem; color: var(--color-gray-600); }
+  .status-icon-submitted { color: #10b981; width: 20px; height: 20px; }
+  .status-text-pending { font-style: italic; color: var(--color-gray-400); }
+  .report-item--pending, .report-item--today { border-left-width: 4px; }
+  .report-item--pending { border-left-color: var(--color-gray-400); }
+  .report-item--today { border-left-color: var(--color-blue-500); background-color: var(--color-gray-50); }
+  .report-action { margin-left: auto; }
+  .action-button { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: var(--border-radius-md); text-decoration: none; font-weight: 500; border: 1px solid transparent; transition: all 0.2s ease-in-out; }
+  .action-button.primary { background-color: var(--color-blue-500); color: var(--color-white); }
+  .action-button.primary:hover { opacity: 0.9; }
+  .action-button.secondary { background-color: var(--color-white); color: var(--color-blue-500); border-color: var(--color-blue-500); }
+  .action-button.secondary:hover { background-color: var(--color-blue-100); }
+  .action-button.view { color: var(--color-gray-600); }
+  .action-button.view:hover { background-color: var(--color-gray-100); }
+</style>

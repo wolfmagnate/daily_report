@@ -1,0 +1,38 @@
+.dateNavContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.arrowButton {
+  background: none;
+  border: 1px solid var(--color-gray-300, #d1d5db);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--color-gray-700, #374151);
+  transition: background-color 0.2s;
+}
+.arrowButton:hover {
+  background-color: var(--color-gray-100, #f3f4f6);
+}
+
+.dateDisplay {
+  font-weight: 600;
+  color: var(--color-gray-800, #1f2937);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  user-select: none;
+}
+.dateDisplay:hover {
+  background-color: var(--color-gray-100, #f3f4f6);
+}

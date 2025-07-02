@@ -1,0 +1,12 @@
+---
+import { Image } from 'astro:assets';
+import githubImage from './github.png';
+
+interface Props {
+    width: number;
+}
+
+const { width } = Astro.props;
+---
+
+<Image src={githubImage} alt="GitHub" loading="lazy" width={width} />

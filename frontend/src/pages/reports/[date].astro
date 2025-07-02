@@ -1,0 +1,62 @@
+---
+import Layout from '../../components/Layout.astro';
+import ActivitySidebar from '../../components/report/ActivitySidebar.astro';
+import { Editor, type EditorTabEvents } from '../../components/report/Editor';
+import { isValidDateString } from '../../components/report/isValidDateString';
+import { reportState } from '../../toplevel/di';
+import { GetReportData } from '../../bff/report';
+
+export interface ReportState {
+  editorTabEvents: EditorTabEvents;
+}
+
+const userID = Astro.locals.user.id;
+const reportData = await GetReportData(userID)
+
+const { date } = Astro.params;
+if (date === undefined || !isValidDateString(date)) {
+  return Astro.redirect('/error');
+}
+const today = date;
+
+const avatarURL = Astro.locals.user.avatar_url;
+
+---
+<Layout title="日報作成デモ" avatarURL={avatarURL}>
+  <div id="page-container" class="page-container">
+    <div class="sidebar-area">
+      <ActivitySidebar sidebarData={reportData.activitySidebar} />
+    </div>
+    
+    <main class="main-content-area">
+      <Editor
+        currentDateStr={today}
+        privateReflectionData={reportData.editor.privateReflection}
+        publicReportData={reportData.editor.publicReport}
+        events={reportState.editorTabEvents}
+        client:load
+      />
+    </main>
+  </div>
+</Layout>
+
+<style>
+  .page-container {
+    display: grid;
+    height: 100vh;
+    grid-template-areas: "sidebar main";
+    grid-template-rows: 1fr;
+    grid-template-columns: auto 1fr;
+  }
+  .sidebar-area {
+    grid-area: sidebar;
+    overflow: hidden;
+  }
+
+  .main-content-area {
+    grid-area: main;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+</style>

@@ -1,0 +1,46 @@
+---
+// Headerコンポーネントをインポートします
+import Header from '../components/ui/Header.astro';
+import './global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  avatarURL: string;
+}
+
+const { title, description = 'AI日報・週報支援システム', avatarURL } = Astro.props;
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title} | AI日報・週報支援システム</title>
+  </head>
+  <body>
+    <div class="app-container">
+      <Header avatarURL={avatarURL}/>
+      <main class="app-main">
+        <slot />
+      </main>
+    </div>
+  </body>
+</html>
+
+<style>
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.app-main {
+  flex-grow: 1;
+  /* ヘッダーの高さを除いた分だけ高さを確保します */
+  height: calc(100vh - 80px);
+  overflow: hidden; /* 二重スクロールバーを防止 */
+}
+</style>

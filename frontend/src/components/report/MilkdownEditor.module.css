@@ -1,0 +1,11 @@
+.editorContainer {
+  border: 1px solid var(--color-gray-200);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.editorContainer :global(.milkdown) {
+  height: 100%;
+  width: 100%;
+}

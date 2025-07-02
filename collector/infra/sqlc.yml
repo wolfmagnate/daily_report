@@ -1,0 +1,14 @@
+sql:
+    - engine: postgresql
+      gen:
+        go:
+            out: db
+            sql_package: "pgx/v5"
+            package: db
+      queries:
+        - ./sql/user.sql
+        - ./sql/github_activity.sql
+        - ./sql/slack_activity.sql
+      schema:
+        - "../../db/schema.sql"
+version: "2"

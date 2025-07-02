@@ -1,0 +1,12 @@
+---
+import { Image } from 'astro:assets';
+import trelloImage from './trello.png';
+
+interface Props {
+    width: number;
+}
+
+const { width } = Astro.props;
+---
+
+<Image src={trelloImage} alt="Trello" loading="lazy" width={width} />

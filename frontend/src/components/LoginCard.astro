@@ -1,0 +1,45 @@
+---
+import Card from './ui/Card.astro';
+import Button from './ui/Button.astro';
+import GitHubIcon from './icon/GitHubIcon.astro';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<Card>
+  <div class="wrapper">
+    <h1 class="title">{title}</h1>
+    <p class="description">{description}</p>
+      <div class="buttonWrapper">
+        <Button href="/api/auth/github/redirect">
+          <GitHubIcon width={30}/>
+          <span>GitHubでログイン</span>
+        </Button>
+      </div>
+  </div>
+</Card>
+
+<style>
+.wrapper {
+  text-align: center;
+  max-width: 380px;
+  margin: 0 auto;
+}
+.title {
+  font-size: 1.875rem; /* 30px */
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.description {
+  color: var(--color-gray-600);
+  margin-bottom: 2rem;
+}
+.buttonWrapper {
+  margin-top: 1rem;
+}
+</style>

@@ -1,0 +1,12 @@
+---
+import { Image } from 'astro:assets';
+import slackImage from './slack.png';
+
+interface Props {
+    width: number;
+}
+
+const { width } = Astro.props;
+---
+
+<Image src={slackImage} alt="Slack" loading="lazy" width={width} />

@@ -1,0 +1,29 @@
+---
+import Layout from '../components/Layout.astro';
+import LoginCard from '../components/LoginCard.astro';
+
+const pageData = {
+  title: "AI日報支援システムへようこそ",
+  description: "日々の活動を記録し、あなたの成長を加速させましょう。",
+};
+---
+<Layout title="ログイン" avatarURL=''>
+  <main class="main">
+    <LoginCard
+      title={pageData.title}
+      description={pageData.description}
+    />
+  </main>
+</BaseLayout>
+
+<style>
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1rem;
+
+  padding-bottom: 200px;
+}
+</style>

@@ -1,0 +1,85 @@
+---
+import type { Activity } from '../../bff/report/activitySidebar';
+// アイコンを動的に選択するためのヘルパー
+import GitHubIcon from '../icon/GitHubIcon.astro';
+import SlackIcon from '../icon/SlackIcon.astro';
+import TrelloIcon from '../icon/TrelloIcon.astro';
+
+function getIcon(source: string) {
+    switch (source) {
+        case 'github':
+            return GitHubIcon;
+        case 'slack':
+            return SlackIcon;
+        case 'trello':
+            return TrelloIcon;
+        default:
+            return null;
+    }
+}
+
+interface Props {
+  activityData: Activity;
+}
+const { activityData } = Astro.props;
+const Icon = getIcon(activityData.source);
+---
+<div class="activity-item">
+  <div class="timestamp">{new Date(activityData.timestamp).toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' })}</div>
+  <div class="timeline-line">
+    <div class="timeline-dot"></div>
+  </div>
+  <div class="item-content">
+    <div class="item-header">
+      <span class="service-icon">{Icon && <Icon width={24}/>}</span>
+      <span class="summary">{activityData.summary}</span>
+    </div>
+    <div class="item-details">
+      <p>{activityData.details}</p>
+      <a href={activityData.sourceUrl} target="_blank" rel="noopener noreferrer" class="details-link" aria-label="元の活動へのリンク">
+        <svg width="16" height="16" viewBox="0 0 24 24"></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .activity-item {
+    display: grid;
+    grid-template-columns: 60px 20px 1fr;
+    gap: 0.5rem;
+    padding: 0.75rem 0;
+  }
+  .timestamp {
+    font-size: 0.875rem;
+    color: var(--color-gray-600);
+    text-align: right;
+  }
+  .timeline-line {
+    position: relative;
+    width: 2px;
+    background-color: var(--color-gray-200);
+    margin: 0 auto;
+  }
+  .timeline-dot {
+    position: absolute;
+    top: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-white);
+    border: 2px solid var(--color-gray-400);
+    border-radius: 50%;
+  }
+  .item-content {
+    /* ... content styles ... */
+  }
+  .item-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+  }
+  /* ... other styles ... */
+</style>
