@@ -1,0 +1,70 @@
+---
+import IntegrationStatusBadge from "./IntegrationStatusBadge.astro";
+
+interface Props {
+  integration: {
+    id: string;
+    name: string;
+    icon: string;
+    connected: boolean;
+  };
+}
+
+const { integration } = Astro.props;
+---
+
+<div class="header">
+  <div class="info">
+    <div class="icon-wrapper">
+      <img src={integration.icon} alt={`${integration.name} icon`} class="icon" />
+    </div>
+    <div class="text-wrapper">
+      <h3 class="name">{integration.name}</h3>
+      <p class="status-text">{integration.connected ? "連携済み" : "未連携"}</p>
+    </div>
+  </div>
+  <IntegrationStatusBadge connected={integration.connected} />
+</div>
+
+<style>
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .info {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* 16px */
+  }
+
+  .icon-wrapper {
+    width: 3.5rem; /* 56px */
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-gray-50);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--border-radius-lg);
+  }
+
+  .icon {
+    width: 2rem; /* 32px */
+    height: 2rem;
+  }
+
+  .name {
+    font-size: 1.5rem; /* 24px */
+    font-weight: 700;
+    color: var(--color-black);
+    line-height: 1.2;
+  }
+
+  .status-text {
+    font-size: 1rem; /* 16px */
+    margin-top: 0.25rem;
+    color: var(--color-gray-600);
+  }
+</style>

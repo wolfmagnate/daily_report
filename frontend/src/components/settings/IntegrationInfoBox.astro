@@ -1,0 +1,45 @@
+---
+---
+
+<div class="info-box">
+  <h3 class="title">連携について</h3>
+  <div class="content">
+    <p>
+      • <strong>Slack連携:</strong> 指定したチャンネルからメッセージ、ファイル、リンクを自動収集します
+    </p>
+    <p>
+      • <strong>GitHub連携:</strong> リポジトリの活動、プルリクエスト、イシューを追跡します
+    </p>
+    <p>• すべての連携はOAuth2.0プロトコルを使用して安全に行われます</p>
+    <p>• 連携はいつでも解除でき、解除時にはアクセストークンが無効化されます</p>
+  </div>
+</div>
+
+<style>
+  .info-box {
+    padding: 1.5rem;
+    background-color: var(--color-blue-100);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+  }
+
+  .title {
+    font-size: 1.25rem; /* 20px */
+    font-weight: 700;
+    color: var(--color-blue-500);
+    margin-bottom: 1rem;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.5;
+    color: var(--color-blue-500);
+  }
+
+  .content strong {
+    font-weight: 700;
+  }
+</style>

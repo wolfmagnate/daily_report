@@ -1,0 +1,83 @@
+---
+import Layout from '../../components/Layout.astro';
+import IntegrationCard from '../../components/settings/IntegrationCard.astro';
+import IntegrationInfoBox from '../../components/settings/IntegrationInfoBox.astro';
+
+const avatarURL = Astro.locals.user.avatar_url;
+
+// ダミーデータ
+const integrations = [
+  {
+    id: "slack",
+    name: "Slack",
+    icon: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/slack.svg",
+    connected: false,
+    accountName: "My Workspace",
+    accountAvatar: "/placeholder.svg?height=32&width=32",
+    connectedAt: "2024-01-15",
+    scopes: ["channels:read", "chat:write", "users:read"],
+    selectedChannels: ["general", "development"],
+  },
+  {
+    id: "github",
+    name: "GitHub",
+    icon: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg",
+    connected: false,
+  },
+];
+---
+
+<Layout title="連携管理" avatarURL={avatarURL}>
+  <div class="page-container">
+    <div class="header-section">
+      <h1 class="page-title">連携管理</h1>
+      <p class="page-description">
+        外部サービスとの連携を管理します。OAuth2.0を使用して安全に認証を行います。
+      </p>
+    </div>
+
+    <div class="integrations-list">
+      {integrations.map((integration) => (
+        <IntegrationCard integration={integration} />
+      ))}
+    </div>
+
+    <IntegrationInfoBox />
+  </div>
+</Layout>
+
+<style>
+  .page-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    height: 100%; /* 親要素の高さに合わせる */
+    overflow-y: auto; /* 縦方向のスクロールを可能にする */
+  }
+
+  .header-section {
+    margin-bottom: 1rem;
+  }
+
+  .page-title {
+    font-size: 2.25rem; /* 36px */
+    font-weight: 700;
+    color: var(--color-black);
+    margin-bottom: 1rem;
+  }
+
+  .page-description {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.6;
+    color: var(--color-gray-600);
+  }
+
+  .integrations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+</style>

@@ -1,0 +1,65 @@
+---
+import IconHash from '../icon/IconHash.astro'; // Note: This icon needs to be created.
+import IconX from '../icon/IconX.astro';     // Note: This icon needs to be created.
+
+interface Props {
+  channelName: string;
+  channelId: string;
+}
+
+const { channelName, channelId } = Astro.props;
+---
+
+<div class="badge">
+  <IconHash class="icon" />
+  <span class="name">{channelName}</span>
+  <button class="remove-button" data-channel-id={channelId} aria-label={`Remove ${channelName} channel`}>
+    <IconX class="icon-remove" />
+  </button>
+</div>
+
+<style>
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background-color: var(--color-blue-100);
+    color: var(--color-blue-500);
+    border-radius: var(--border-radius-md);
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+
+  .icon {
+    width: 0.875rem; /* 14px */
+    height: 0.875rem;
+  }
+
+  .name {
+    line-height: 1;
+  }
+
+  .remove-button {
+    margin-left: 0.25rem;
+    padding: 0.25rem;
+    border-radius: 9999px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-blue-500);
+    transition: background-color 0.2s;
+  }
+
+  .remove-button:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .icon-remove {
+    width: 0.75rem; /* 12px */
+    height: 0.75rem;
+  }
+</style>

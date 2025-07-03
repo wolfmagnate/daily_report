@@ -1,0 +1,51 @@
+---
+import IconCheckCircle from '../icon/IconCheckCircle.astro';
+import IconXCircle from '../icon/IconXCircle.astro';
+
+interface Props {
+  connected: boolean;
+}
+
+const { connected } = Astro.props;
+---
+
+<div class:list={["badge", { connected: connected, disconnected: !connected }]}>
+  {connected ? (
+    <>
+      <IconCheckCircle class="icon" />
+      <span>接続中</span>
+    </>
+  ) : (
+    <>
+      <IconXCircle class="icon" />
+      <span>未接続</span>
+    </>
+  )}
+</div>
+
+<style>
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem; /* 8px */
+    padding: 0.5rem 1rem; /* 8px 16px */
+    font-size: 0.875rem; /* 14px */
+    font-weight: 500;
+    border-radius: var(--border-radius-md);
+  }
+
+  .icon {
+    width: 1rem; /* 16px */
+    height: 1rem; /* 16px */
+  }
+
+  .connected {
+    background-color: var(--color-blue-100);
+    color: var(--color-blue-500);
+  }
+
+  .disconnected {
+    background-color: var(--color-gray-100);
+    color: var(--color-gray-600);
+  }
+</style>
