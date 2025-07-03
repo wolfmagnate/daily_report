@@ -16,6 +16,7 @@ type Crypter interface {
 }
 
 type crypter struct {
+	// 隠しておける状態
 	gcm cipher.AEAD
 }
 
